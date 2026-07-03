@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Rapie — IT Senior Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0f1a;
+    --bg-alt: #0d1420;
+    --surface: #121b2b;
+    --surface-2: #16223590;
+    --line: #223049;
+    --line-bright: #2c3f5e;
+    --text: #e7ecf5;
+    --text-dim: #8a97ad;
+    --text-dimmer: #5c6a80;
+    --accent: #5eead4;
+    --accent-dim: #2c7a6d;
+    --amber: #f2b84b;
+    --danger: #ef7a6d;
+    --radius: 10px;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Manrope', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, #10203a 0%, transparent 45%),
+      radial-gradient(circle at 85% 15%, #142a24 0%, transparent 40%);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;}
+  ::selection{background: var(--accent); color:#06251f;}
+
+  .wrap{max-width: 980px; margin: 0 auto; padding: 0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(10,15,26,0.75);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .brand{font-family:var(--mono); font-size:14px; color:var(--accent); letter-spacing:0.02em; display:flex; align-items:center; gap:8px;}
+  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent); box-shadow:0 0 8px var(--accent); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  .navlinks{display:flex; gap:26px; font-size:13px; font-family:var(--mono); color:var(--text-dim);}
+  .navlinks a{text-decoration:none; transition:color .15s;}
+  .navlinks a:hover{color:var(--accent);}
+  .navlinks span{color:var(--text-dimmer);}
+  @media (max-width:680px){.navlinks{display:none;}}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding: 86px 0 60px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; color:var(--text-dimmer);
+    letter-spacing:0.14em; text-transform:uppercase; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:"//"; color:var(--accent-dim);}
+  h1.name{
+    font-family:var(--sans); font-weight:800; letter-spacing:-0.02em;
+    font-size: clamp(38px, 6vw, 62px); line-height:1.04;
+    color:#fff;
+  }
+  h1.name .accent{color:var(--accent);}
+  .role{
+    font-family:var(--mono); color:var(--text-dim); font-size:16px; margin-top:16px; margin-bottom:26px;
+  }
+  .thesis{
+    max-width:620px; font-size:17px; color: #c3cbdb; margin-bottom:40px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px;}
+  .btn{
+    font-family:var(--mono); font-size:13px; padding:11px 20px; border-radius:6px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all .18s;
+  }
+  .btn-primary{background:var(--accent); color:#06251f; font-weight:600;}
+  .btn-primary:hover{background:#7ff2df; transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line-bright); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* status dashboard */
+  .dash{
+    border:1px solid var(--line); border-radius:var(--radius);
+    background: linear-gradient(180deg, #101a2c, #0d1522);
+    overflow:hidden;
+  }
+  .dash-bar{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    border-bottom:1px solid var(--line); font-family:var(--mono); font-size:12px; color:var(--text-dimmer);
+  }
+  .dash-bar .lights{display:flex; gap:6px; margin-right:10px;}
+  .dash-bar .lights span{width:9px; height:9px; border-radius:50%; display:inline-block;}
+  .l1{background:#ef7a6d;} .l2{background:#f2b84b;} .l3{background:#5eead4;}
+  .dash-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  @media (max-width:760px){.dash-grid{grid-template-columns:repeat(2,1fr);}}
+  .metric{
+    padding:24px 20px; border-right:1px solid var(--line); border-top:1px solid transparent;
+  }
+  .metric:nth-child(4n){border-right:none;}
+  @media (max-width:760px){.metric:nth-child(2n){border-right:none;} .metric:nth-child(4n){border-right:1px solid var(--line);}}
+  .metric .num{
+    font-family:var(--mono); font-weight:600; font-size:26px; color:#fff;
+  }
+  .metric .num .unit{color:var(--accent); font-size:16px;}
+  .metric .lbl{
+    font-family:var(--mono); font-size:11.5px; color:var(--text-dimmer); margin-top:6px; letter-spacing:0.03em;
+  }
+  .metric .status{display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-family:var(--mono); font-size:10.5px; color:var(--accent);}
+  .metric .status i{width:6px;height:6px;border-radius:50%;background:var(--accent); box-shadow:0 0 6px var(--accent);}
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding: 70px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:38px;}
+  .sec-tag{font-family:var(--mono); font-size:12px; color:var(--accent-dim); border:1px solid var(--line-bright); padding:3px 9px; border-radius:20px;}
+  h2.sec-title{font-size: clamp(24px,3vw,30px); font-weight:800; letter-spacing:-0.01em; color:#fff;}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{position:relative; padding-left:28px;}
+  .tl::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:linear-gradient(var(--accent-dim), var(--line) 85%);}
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .tl-item.past::before{border-color:var(--text-dimmer);}
+  .tl-role{font-weight:700; font-size:18px; color:#fff;}
+  .tl-org{color:var(--accent); font-family:var(--mono); font-size:13px; margin-top:2px;}
+  .tl-date{font-family:var(--mono); font-size:12px; color:var(--text-dimmer); margin-top:2px; margin-bottom:14px;}
+  .tl-list{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .tl-list li{position:relative; padding-left:18px; color:#b7c0d1; font-size:14.5px;}
+  .tl-list li::before{content:"›"; position:absolute; left:0; color:var(--accent); font-family:var(--mono);}
+  .tl-list li b{color:#fff; font-weight:600;}
+
+  /* ---------- PROJECT CARDS ---------- */
+  .projects{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:760px){.projects{grid-template-columns:1fr;}}
+  .card{
+    border:1px solid var(--line); border-radius:var(--radius); background:var(--surface);
+    padding:24px; transition: border-color .18s, transform .18s;
+  }
+  .card:hover{border-color:var(--accent-dim); transform:translateY(-2px);}
+  .card .tag{font-family:var(--mono); font-size:11px; color:var(--amber); letter-spacing:0.05em; text-transform:uppercase;}
+  .card h3{font-size:17px; margin-top:10px; margin-bottom:10px; color:#fff; font-weight:700;}
+  .card p{font-size:14px; color:var(--text-dim); margin-bottom:14px;}
+  .card .flow{font-family:var(--mono); font-size:12px; color:#9fb4c9; background:#0c1420; border:1px solid var(--line); border-radius:6px; padding:10px 12px; margin-bottom:14px; line-height:1.7;}
+  .card .flow .arrow{color:var(--accent-dim); margin:0 4px;}
+  .impact{
+    display:inline-flex; align-items:baseline; gap:6px; font-family:var(--mono);
+    background:#0c1420; border:1px solid var(--line-bright); padding:6px 12px; border-radius:20px;
+  }
+  .impact b{color:var(--accent); font-size:16px;}
+  .impact span{font-size:11px; color:var(--text-dimmer);}
+  .card.wide{grid-column: 1 / -1;}
+
+  /* ---------- CERTS ---------- */
+  .certs{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media (max-width:760px){.certs{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.certs{grid-template-columns:1fr;}}
+  .cert{
+    border:1px solid var(--line); border-radius:8px; padding:16px; background:var(--surface);
+  }
+  .cert .yr{font-family:var(--mono); font-size:11px; color:var(--text-dimmer);}
+  .cert .nm{font-size:14px; font-weight:700; color:#fff; margin-top:6px; line-height:1.35;}
+  .cert .org{font-size:12px; color:var(--accent); margin-top:6px; font-family:var(--mono);}
+
+  /* ---------- SKILLS ---------- */
+  .skillgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:760px){.skillgrid{grid-template-columns:1fr;}}
+  .skillcol .h{font-family:var(--mono); font-size:12px; color:var(--amber); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; border-bottom:1px solid var(--line); padding-bottom:8px;}
+  .skillcol ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .skillcol li{font-size:14px; color:#c3cbdb; display:flex; align-items:center; gap:9px;}
+  .skillcol li::before{content:""; width:5px; height:5px; background:var(--accent); border-radius:50%; flex-shrink:0;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:64px 0 50px; text-align:center;}
+  footer .cta{font-size: clamp(22px,3vw,30px); font-weight:800; color:#fff; margin-bottom:18px;}
+  footer .sub{color:var(--text-dim); margin-bottom:30px; font-size:15px;}
+  footer .contacts{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; font-family:var(--mono); font-size:14px;}
+  footer .contacts a{text-decoration:none; color:var(--accent); border-bottom:1px solid transparent; transition:border-color .15s;}
+  footer .contacts a:hover{border-color:var(--accent);}
+  footer .fine{margin-top:50px; font-family:var(--mono); font-size:11px; color:var(--text-dimmer);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> A.RAPIE — SYSTEM STATUS: ONLINE</div>
+    <div class="navlinks">
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#certs">certifications</a>
+      <a href="#skills">stack</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">IT Senior Specialist · Cairo, Egypt</div>
+    <h1 class="name">Ahmed <span class="accent">Rapie</span></h1>
+    <div class="role">Active Directory · Microsoft Entra ID · Google Admin · Identity &amp; Automation</div>
+    <p class="thesis">I keep the identity layer running for a college of roughly 700 staff and tens of thousands of students — designing the scripts, syncs, and access systems that quietly stop things from breaking at scale.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">View the systems I've built ↓</a>
+      <a class="btn btn-ghost" href="mailto:ahmed.rapia0@gmail.com">ahmed.rapia0@gmail.com</a>
+    </div>
+
+    <div class="dash">
+      <div class="dash-bar"><span class="lights"><span class="l1"></span><span class="l2"></span><span class="l3"></span></span> identity-ops@cic-infra ~ uptime dashboard</div>
+      <div class="dash-grid">
+        <div class="metric">
+          <div class="num">26,700<span class="unit">+</span></div>
+          <div class="lbl">MFA RESETS AUTOMATED</div>
+          <div class="status"><i></i>SELF-SERVICE</div>
+        </div>
+        <div class="metric">
+          <div class="num">1,110</div>
+          <div class="lbl">STAFF ACCOUNTS ON MFA</div>
+          <div class="status"><i></i>BULK DEPLOYED</div>
+        </div>
+        <div class="metric">
+          <div class="num">50</div>
+          <div class="lbl">OFFICES ON QUEUE SYSTEM</div>
+          <div class="status"><i></i>LIVE</div>
+        </div>
+        <div class="metric">
+          <div class="num">10<span class="unit">+ yrs</span></div>
+          <div class="lbl">IN IT INFRASTRUCTURE</div>
+          <div class="status"><i></i>ACTIVE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">01</span><h2 class="sec-title">Experience</h2></div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-role">IT Senior Specialist</div>
+        <div class="tl-org">Canadian International College (CIC)</div>
+        <div class="tl-date">2015 — Present</div>
+        <ul class="tl-list">
+          <li>Manage hybrid identity infrastructure across <b>Active Directory</b>, <b>Microsoft Entra ID</b>, and <b>Google Admin</b> for ~700 staff and tens of thousands of students</li>
+          <li>Deployed Per-user MFA across <b>~1,110 staff accounts</b> via Entra bulk CSV upload, resolving Security Defaults and sync conflicts</li>
+          <li>Own the Queue Management System (Kiosk/StreamLine) serving Student Affairs and the annual Admissions cycle across <b>50 offices</b></li>
+          <li>Manage and update the college's <b>CCTV and access-control</b> infrastructure (Hikvision)</li>
+          <li>Support PowerCampus (Ellucian), SSRS reporting, and department-wide bulk personalized student email campaigns</li>
+        </ul>
+      </div>
+      <div class="tl-item past">
+        <div class="tl-role">IT Admin</div>
+        <div class="tl-org">Friends Company for Internet and Computer Services</div>
+        <div class="tl-date">2013 — 2015</div>
+      </div>
+      <div class="tl-item past">
+        <div class="tl-role">Technical Support Officer</div>
+        <div class="tl-org">IT-SHARE Company</div>
+        <div class="tl-date">2012 — 2013</div>
+      </div>
+      <div class="tl-item past">
+        <div class="tl-role">Operations Supervisor</div>
+        <div class="tl-org">Al-Tayyar Travel Group</div>
+        <div class="tl-date">Aug 2008 — 2012</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">02</span><h2 class="sec-title">Systems I've Built</h2></div>
+    <div class="projects">
+
+      <div class="card wide">
+        <div class="tag">PowerShell · Microsoft Graph</div>
+        <h3>Self-Service MFA Reset Tool</h3>
+        <p>Users who lost or changed a phone were locked out with no way back in. This tool clears the deadlock without a helpdesk ticket.</p>
+        <div class="flow">revoke active sessions <span class="arrow">→</span> clear old auth methods <span class="arrow">→</span> capture mobile number <span class="arrow">→</span> auto re-register as MFA method</div>
+        <div class="impact"><b>26,700</b><span>users covered</span></div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Active Directory · GCDS</div>
+        <h3>Bulk Password Reset + OU Sync Tool</h3>
+        <p>New student accounts authenticated fine on Microsoft but silently failed on Google. This tool resets the AD password to the student ID, relocates the account to its correct OU, and triggers a Google sync — for any batch size.</p>
+      </div>
+
+      <div class="card">
+        <div class="tag">ASP.NET Core · SignalR · MariaDB</div>
+        <h3>Queue Management System</h3>
+        <p>Reverse-engineered and now maintain the kiosk/queue platform (Apache + PHP + MariaDB + SignalR) that routes Student Affairs and annual Admissions traffic across 50 offices and staff.</p>
+        <div class="impact"><b>50</b><span>offices served</span></div>
+      </div>
+
+      <div class="card">
+        <div class="tag">Hikvision · Physical Security</div>
+        <h3>CCTV &amp; Access Control</h3>
+        <p>Own the college's video surveillance and access-control infrastructure, including facial-recognition entry systems, holding Hikvision HCSA certifications in Installation and Access Control.</p>
+      </div>
+
+      <div class="card">
+        <div class="tag">Mail Merge · Automation</div>
+        <h3>Bulk Personalized Student Communications</h3>
+        <p>Built the workflow departments use to send hundreds of individually tailored emails to students in a single batch — each recipient gets their own message, not a broadcast.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">03</span><h2 class="sec-title">Certifications</h2></div>
+    <div class="certs">
+      <div class="cert"><div class="yr">VALID THRU DEC 2026</div><div class="nm">HCSA — Installer</div><div class="org">Hikvision</div></div>
+      <div class="cert"><div class="yr">CURRENT</div><div class="nm">HCSA — Access Control</div><div class="org">Hikvision</div></div>
+      <div class="cert"><div class="yr">2016 – 2017 · 72 HRS</div><div class="nm">Microsoft Certified Solutions Expert</div><div class="org">CICCE</div></div>
+      <div class="cert"><div class="yr">2016</div><div class="nm">Quality &amp; its Impact on High Education Institutes</div><div class="org">CIC / uOttawa QA Unit</div></div>
+      <div class="cert"><div class="yr">2016</div><div class="nm">Legal, Administrative &amp; Financial Affairs in High Education</div><div class="org">CIC / uOttawa QA Unit</div></div>
+      <div class="cert"><div class="yr">CORE</div><div class="nm">Web Design + PHP</div><div class="org">IT Technology Center</div></div>
+      <div class="cert"><div class="yr">CORE</div><div class="nm">ICDL</div><div class="org">International Computer Driving Licence</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-tag">04</span><h2 class="sec-title">Stack</h2></div>
+    <div class="skillgrid">
+      <div class="skillcol">
+        <div class="h">Identity &amp; Cloud</div>
+        <ul>
+          <li>Active Directory</li>
+          <li>Microsoft Entra ID (Azure AD)</li>
+          <li>Google Admin Console</li>
+          <li>Google Cloud Directory Sync</li>
+          <li>Azure Logic Apps</li>
+          <li>MFA &amp; Identity Security</li>
+        </ul>
+      </div>
+      <div class="skillcol">
+        <div class="h">Automation &amp; Dev</div>
+        <ul>
+          <li>PowerShell + Microsoft Graph</li>
+          <li>Python (Flask, SQLite, Socket.IO)</li>
+          <li>SQL Server / SSRS</li>
+          <li>HTML · CSS · JS · PHP · MySQL</li>
+        </ul>
+      </div>
+      <div class="skillcol">
+        <div class="h">Infrastructure &amp; Security</div>
+        <ul>
+          <li>Windows Server</li>
+          <li>RDS / RemoteApp</li>
+          <li>CCTV &amp; Access Control (Hikvision)</li>
+          <li>Windows OS Deployment &amp; Imaging</li>
+          <li>Hardware / Software Troubleshooting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="cta">Let's talk infrastructure.</div>
+    <div class="sub">Open to Senior IT / Systems / Identity Administration roles.</div>
+    <div class="contacts">
+      <a href="mailto:ahmed.rapia0@gmail.com">ahmed.rapia0@gmail.com</a>
+      <a href="tel:+201064646029">+2 010-64646029</a>
+    </div>
+    <div class="fine">Arabic (Native) · English (Very Good) — Cairo, Egypt</div>
+  </div>
+</footer>
+
+</body>
+</html>
